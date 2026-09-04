@@ -1,36 +1,24 @@
-from ingestion.loader import load_pdf
-from ingestion.chunker import chunk_pages
-from embeddings.embedding_model import EmbeddingModel
-from vectorstore.chroma import ChromaVectorStore
+from retrieval.retriever import Retriever
 
 
-# 1. Load PDF
-pages = load_pdf("data/sample.pdf")
+retriever = Retriever()
 
-# 2. Create chunks
-chunks = chunk_pages(pages)
+query = "What is the main purpose of this document?"
 
-print("Pages:", len(pages))
-print("Chunks:", len(chunks))
-
-
-# 3. Generate embeddings
-embedding_model = EmbeddingModel()
-
-texts = [chunk["text"] for chunk in chunks]
-
-embeddings = embedding_model.embed_texts(texts)
-
-print("Embeddings:", len(embeddings))
-print("Vector dimension:", len(embeddings[0]))
-
-
-# 4. Store in ChromaDB
-vector_store = ChromaVectorStore()
-
-vector_store.add_documents(
-    chunks,
-    embeddings
+results = retriever.retrieve(
+    query=query,
+    top_k=3
 )
 
-print("Documents stored:", vector_store.count())
+print("\nQuery:")
+print(query)
+
+print("\nRetrieved chunks:\n")
+
+for i, document in enumerate(results["documents"][0], start=1):
+    metadata = results["metadatas"][0][i - 1]
+
+    print(f"--- Result {i} ---")
+    print(f"Page: {metadata['page_number']}")
+    print(document)
+    print()
