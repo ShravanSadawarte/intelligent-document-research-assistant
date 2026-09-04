@@ -1,14 +1,11 @@
-from generation.llm import LLM
+from pipeline.rag_pipeline import RAGPipeline
 
 
-llm = LLM()
+rag = RAGPipeline()
 
-prompt = """
-Explain what Retrieval-Augmented Generation (RAG) is
-in 3 simple sentences.
-"""
+question = "What projects are mentioned in this document?"
 
-answer = llm.generate(prompt)
+answer = rag.ask(question)
 
-print("\nLLM RESPONSE:")
+print("\n===== FINAL ANSWER =====\n")
 print(answer)
