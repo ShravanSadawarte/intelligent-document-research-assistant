@@ -1,27 +1,14 @@
-from retrieval.retriever import Retriever
+from generation.llm import LLM
 
 
-retriever = Retriever()
+llm = LLM()
 
-query = "What is the main purpose of this document?"
+prompt = """
+Explain what Retrieval-Augmented Generation (RAG) is
+in 3 simple sentences.
+"""
 
-results = retriever.retrieve(
-    query=query,
-    top_k=5
-)
+answer = llm.generate(prompt)
 
-print("\nQuery:")
-print(query)
-
-print("\nRetrieved chunks:\n")
-
-documents = results["documents"][0]
-metadatas = results["metadatas"][0]
-distances = results["distances"][0]
-
-for i, document in enumerate(documents, start=1):
-    print(f"--- Result {i} ---")
-    print(f"Distance: {distances[i - 1]:.4f}")
-    print(f"Page: {metadatas[i - 1]['page_number']}")
-    print(document)
-    print()
+print("\nLLM RESPONSE:")
+print(answer)
