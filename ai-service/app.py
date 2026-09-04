@@ -1,18 +1,15 @@
-from ingestion.loader import load_pdf
-from ingestion.chunker import chunk_pages
+from embeddings.embedding_model import EmbeddingModel
 
 
-pdf_path = "data/sample.pdf"
+model = EmbeddingModel()
 
-pages = load_pdf(pdf_path)
+texts = [
+    "Artificial intelligence is transforming software development.",
+    "Retrieval augmented generation uses external knowledge."
+]
 
-chunks = chunk_pages(pages)
+embeddings = model.embed_texts(texts)
 
-print(f"Total pages: {len(pages)}")
-print(f"Total chunks: {len(chunks)}")
-
-for chunk in chunks[:5]:
-    print("\n--------------------")
-    print(f"Chunk ID: {chunk['chunk_id']}")
-    print(f"Page: {chunk['page_number']}")
-    print(chunk["text"])
+print("Number of embeddings:", len(embeddings))
+print("Vector dimension:", len(embeddings[0]))
+print("First 5 values:", embeddings[0][:5])
