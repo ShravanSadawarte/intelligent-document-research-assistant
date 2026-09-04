@@ -1,0 +1,102 @@
+# ================================
+# Python
+# ================================
+
+.venv/
+venv/
+env/
+ENV/
+
+__pycache__/
+*.py[cod]
+*.pyo
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+build/
+dist/
+*.egg-info/
+
+# ================================
+# Environment / Secrets
+# ================================
+
+.env
+.env.*
+!.env.example
+
+# ================================
+# RAG / AI Generated Data
+# ================================
+
+chroma_db/
+chroma/
+vectorstore/
+
+data/
+uploads/
+outputs/
+tmp/
+temp/
+logs/
+
+# Model files
+models/
+*.bin
+*.pt
+*.pth
+*.onnx
+*.safetensors
+*.ckpt
+*.gguf
+
+# ================================
+# Node.js
+# ================================
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ================================
+# Frontend Build
+# ================================
+
+dist/
+build/
+.next/
+.vite/
+
+# ================================
+# IDE
+# ================================
+
+.vscode/
+.idea/
+*.iml
+
+# ================================
+# OS
+# ================================
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ================================
+# Jupyter
+# ================================
+
+.ipynb_checkpoints/
+
+# ================================
+# Coverage
+# ================================
+
+.coverage
+coverage/
+htmlcov/
