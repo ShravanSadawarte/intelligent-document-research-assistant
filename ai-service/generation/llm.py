@@ -17,7 +17,7 @@ class LLM:
 
         self.client = genai.Client(api_key=api_key)
 
-        self.model_name = "gemini-2.5-flash"
+        self.model_name = "gemini-3.6-flash"
 
     def generate(self, prompt: str) -> str:
         response = self.client.models.generate_content(
